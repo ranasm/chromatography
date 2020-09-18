@@ -1,63 +1,62 @@
 % ------------------------------------------------------------------------
 % Method      : Chromatography.import
 % Description : Import instrument data files
+% 09/15/2020, mo81: Adapted chromatography import method. Input specifies
+% direct path to file. Does not prompt user for selection. 
 % ------------------------------------------------------------------------
 %
 % ------------------------------------------------------------------------
 % Syntax
 % ------------------------------------------------------------------------
-%   data = obj.import(filetype)
-%   data = obj.import(filetype, Name, Value)
+%   data = obj.import(filepath)
 %
 % ------------------------------------------------------------------------
 % Parameters
 % ------------------------------------------------------------------------
-%   filetype (required)
-%       Description : file extension of data
-%       Type        : '.D', '.CDF', '.RAW', '.MS'
-%
-%   'append' (optional)
-%       Description : appends import data to existing data
-%       Type        : structure
-%
-%   'precision' (optional)
-%       Description : maximum decimal places for m/z values
-%       Type        : number
-%       Default     : 3
-%
-%   'progress' (optional)
-%       Description : display import progress in command window
-%       Type        : 'on', 'off'
-%       Default     : 'on'
+%   filepath (required)
+%       Description : file path of Agilent data (Type: '.D')
 %
 % ------------------------------------------------------------------------
 % Examples
 % ------------------------------------------------------------------------
-%   data = obj.import('.CDF')
-%   data = obj.import('.D', 'append', data)
-%   data = obj.import('.MS', 'progress', 'off', 'precision', 2)
-%   data = obj.import('.RAW', 'append', data, 'progress', 'on')
-%
+%   data = obj.import('homeroot/HPLC/PBRData.D')')
 
 function varargout = import(obj, varargin)
 
-[data, options] = parse(obj, varargin);
+%predefine data, options
+%******************************************
+data.id=[];
+data.name=[];
+data.file=[];
+data.sample=[];
+data.method=[];
+data.time=[];
+data.tic=[];
+data.xic=[];
+data.mz=[];
+data.backup=[];
+data.status=[];
 
-% Check for errors
-if isempty(data) && isempty(options)
-    disp('Unrecognized file format.');
-    return
-end
+options.filetype='.D';
+options.precision=3;
+options.progress='on';
+options.compute_time=0;
+options.import_bytes=0;
+options.file_count=0;
+options.error_count=0;
+options.extra='';
+
+filepath=varargin{1};
+[filepath,name,ext] = fileparts(filepath);
+files={filepath,name,ext};
+%******************************************
 
 % Supress warnings
 warning off all
 
-% Open file selection dialog
-files = dialog(obj, varargin{1});
-
 % Remove entries with incorrect filetype
 if ~isempty(files)
-    files(~strcmpi(files(:,3), varargin{1}), :) = [];
+    files(~strcmpi(files(:,3), '.D'), :) = [];
 end
 
 if isempty(files)
