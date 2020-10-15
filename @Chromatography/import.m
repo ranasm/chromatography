@@ -47,6 +47,7 @@ options.error_count=0;
 options.extra='';
 
 filepath=varargin{1};
+fullfilepath=filepath;
 [filepath,name,ext] = fileparts(filepath);
 files={filepath,name,ext};
 %******************************************
@@ -78,7 +79,7 @@ else
 end
 
 % Set path to selected folder
-path(files{1,1}, path);
+% path(files{1,1}, path);
 
 % Variables
 import_data = {};
@@ -220,14 +221,14 @@ switch options.filetype
                     import_data{end}.tic.values = fdata.intensity;
                 end
                 
-                rmpath(filepath);
+                %rmpath(filepath);
             else
                 fprintf([...
                     '[', num2str(i), '/', num2str(length(files(:,1))), ']'...
                     ' Error loading ''', '%s', '''\n'], filepath);
                 
                 options.error_count = options.error_count + 1;
-                rmpath(filepath);
+                %rmpath(filepath);
                 continue
             end
             
@@ -238,12 +239,14 @@ switch options.filetype
         
         % Import Agilent data with the '*.D' extension
     case {'.D'}
-        
+                
         for i = 1:length(files(:,1))
             
             % Absolute file path
-            filepath = fullfile(files{i,1}, strcat(files{i,2}, files{i,3}));
+            %filepath = fullfile(files{i,1}, strcat(files{i,2}, files{i,3}));
             
+            filepath=fullfilepath;
+                        
             [status, fattrib] = fileattrib(filepath);
             
             % Check file path

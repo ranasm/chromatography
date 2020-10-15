@@ -593,7 +593,7 @@ end
 if strcmpi(extension, '.D')
     
     % Set path
-    path(file.Name, path);
+    %path(file.Name, path);
     
     % Determine OS and parse file names
     if ispc

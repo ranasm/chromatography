@@ -74,10 +74,10 @@ classdef Chromatography
             % ---------------------------------------
             % Path
             % ---------------------------------------
-            addpath(source{1});
-            addpath(genpath([source{1}, 'Methods']));
-            addpath(genpath([source{1}, 'Development']));
-            addpath(genpath([source{1}, 'Examples']));
+            %addpath(source{1});
+            %addpath(genpath([source{1}, 'Methods']));
+            %addpath(genpath([source{1}, 'Development']));
+            %addpath(genpath([source{1}, 'Examples']));
             
             % ---------------------------------------
             % Defaults
