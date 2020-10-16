@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="3048090784" file="/Users/mranasinghe/Desktop/BU_Masters_CS/JulieTasking/HPLC/chromatography/MatPET_HPLC_mlapp.prj" location="/Users/mranasinghe/Desktop/BU_Masters_CS/JulieTasking/HPLC/chromatography" name="MatPET_HPLC_mlapp" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="1611971941" file="/Users/mranasinghe/Desktop/BU_Masters_CS/JulieTasking/HPLC/chromatography/MatPET_HPLC_mlapp.prj" location="/Users/mranasinghe/Desktop/BU_Masters_CS/JulieTasking/HPLC/chromatography" name="MatPET_HPLC_mlapp" target="target.mlapps" target-name="Package App">
     <param.appname>MatPET_HPLC_mlapp</param.appname>
     <param.authnamewatermark>Martinos Center for Biomedical Imaging</param.authnamewatermark>
     <param.email />
@@ -52,7 +52,10 @@
       <file>${PROJECT_ROOT}/linear_biexp_fun.m</file>
       <file>${PROJECT_ROOT}/uipickfiles.m</file>
     </fileset.depfun>
-    <fileset.resources />
+    <fileset.resources>
+      <file>${PROJECT_ROOT}/Methods/Import/ImportAgilent.m</file>
+      <file>${PROJECT_ROOT}/Methods/Preprocessing/Smooth.m</file>
+    </fileset.resources>
     <fileset.package />
     <build-deliverables>
       <file location="/Users/mranasinghe/Desktop/BU_Masters_CS/JulieTasking/HPLC" name="chromatography" optional="false">/Users/mranasinghe/Desktop/BU_Masters_CS/JulieTasking/HPLC/chromatography</file>
